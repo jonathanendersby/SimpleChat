@@ -84,3 +84,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 BASE_URL = "http://192.168.0.60:9000"
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
