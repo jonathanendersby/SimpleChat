@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SimpleChat</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/oneplus.css">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+    <style>
+        /* This might be supported, if so, great */
+        body{
+            font-family:sans-serif;
+        }
+    </style>
+</head>
+<body>
+<h1>SimpleChat</h1>
+
+{% if party = 'a' %}<p>You are the host. Give this URL to the other party<br/><a href="{{ base_url }}{% url 'chat' chat_id=c.party_b_id %}">{{ base_url }}{% url 'chat' chat_id=c.party_b_id %}</a></p>{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <textarea name="lines" style="width:100%" rows="3"></textarea><br/>
+    <input type="submit" value="Send" style="font-size:120%" />
+</form>
+<br />
+<form method="GET">
+    <input type="submit" value="Check For New Messages" />
+</form>
+
+
+{% for l in c.line_set.all %}
+    <p style="{%if party = l.party %}color:blue"><strong>You:</strong>{% else %}color:red"><strong>Them:</strong>{% endif %}
+        {{l.message}}<br><small style="color:#000 !important">{{l.ago}}{% if party = l.party and l.seen_by_other_party %} - Seen{% endif %}</small>
+    </p>
+{% endfor %}
+
+
+
+</body>
+</html>
