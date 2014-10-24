@@ -12,7 +12,6 @@ from django.conf import settings
 import models
 
 
-# Create your views here.
 def home(request):
     return render(request, 'home.html')
 
@@ -21,10 +20,7 @@ def random10():
     return ''.join(random.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for _ in range(10))
 
 
-
-
 def new(request):
-
     party_a_id = random10()
     party_b_id = random10()
 
@@ -37,7 +33,6 @@ def new(request):
 
 
 def json_new(request):
-
     party_a_id = random10()
     party_b_id = random10()
 
@@ -53,7 +48,6 @@ def json_new(request):
           }
 
     return HttpResponse(json.dumps(jc, indent=4, cls=DjangoJSONEncoder), content_type="application/json")
-
 
 
 def json_chat(request, chat_id):
@@ -121,11 +115,9 @@ def chat(request, chat_id):
         party = "b"
         clines = models.Line.objects.filter(chat=c, party='a', seen_by_other_party=False)
 
-
     for l in clines:
         l.seen_by_other_party = True
         l.save()
-
 
     if request.method == "POST":
         lines = request.POST.get("lines")

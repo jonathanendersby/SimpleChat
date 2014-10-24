@@ -9,6 +9,9 @@ Yes, there are no push notifications, that's up to you to sort out. Poll the JSO
 
 If you create the chat you are Party A. Party A and B have different URLS. Party A is the host and knows both URLS. Party B sees a simplified version of the interface and does not know the Party A URL.  
 
+
+# API Usage 
+* Firstly this is a very crude "API", but it works perfectly well considering.
 * Hit /json/new/ to create a new chat with JSON feedback. 
 * POST to `party_a_url` with a form parameter called `lines` with the message you wish to send. You'll get back a JSON response with the full chat log.
 
