@@ -37,7 +37,12 @@
     </p>
 {% endfor %}
 
-
-
+<br /><br />
+<footer>
+    <small>
+        Powered by <a href="https://github.com/jonathanendersby/SimpleChat">SimpleChat</a>
+        {% if party = 'a' %} - <a href="{% url 'json_chat' chat_id=c.party_a_id %}">JSON</a>{% endif %}
+    </small>
+</footer>
 </body>
 </html>

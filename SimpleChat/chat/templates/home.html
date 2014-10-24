@@ -17,10 +17,23 @@
 </head>
 <body>
 <h1>SimpleChat</h1>
-<p>SimpleChat is a very very basic chat engine that should work perfectly on just about any device with a "web browser". I very specifically don't use any javascript or fancy styling. I'll add a simple API soon.</p>
+<p>SimpleChat is a very very basic chat engine that should work perfectly on just about any device with a "web browser". I very specifically don't use any javascript or fancy styling.</p>
+
+<small>
+    <p>There's even an API of sorts. Hit <a href="{% url 'json_new' %}">{% url 'json_new' %}</a> to create a new chat with JSON feedback. Then POST to [party_a_url] with a form variable called "lines" with the message you wish to send. You'll get back a JSON response with the full chat log.</p>
+</small>
 
 <p>Feel free to send feedback to arbitraryuser@gmail.com</p>
 
-<a href="/new/">New Chat</a>
+<a href="{% url 'new' %}">New Chat</a>
+
+
+<br /><br />
+<footer>
+    <small>
+        Powered by <a href="https://github.com/jonathanendersby/SimpleChat">SimpleChat</a>
+        {% if party = 'a' %} - <a href="{% url 'json_chat' chat_id=c.party_a_id %}">JSON</a>{% endif %}
+    </small>
+</footer>
 </body>
 </html>
